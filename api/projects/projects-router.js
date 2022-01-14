@@ -24,4 +24,14 @@ router.get('/:id', (req, res, next) => {
             console.log(err)
         })
 })
+
+router.post('/', (req, res, next) => {
+    Projects.insert(req.body)
+    .then(project => {
+        res.json(project)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
 module.exports = router;

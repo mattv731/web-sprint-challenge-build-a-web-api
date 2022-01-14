@@ -10,6 +10,7 @@ module.exports = {
   getProjectActions,
 };
 
+// DONE
 function get(id) {
   let query = db("projects as p");
 

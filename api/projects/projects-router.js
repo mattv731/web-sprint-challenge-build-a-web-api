@@ -34,4 +34,32 @@ router.post('/', (req, res, next) => {
         console.log(err)
     })
 })
+
+router.put('/:id', (req, res, next) => {
+    Projects.update(req.params.id, req.body)
+    .then(() => {
+        return Projects.get(req.params.id)
+    })
+    .then(project => {
+        res.json(project)
+    })
+    .catch(next)
+})
+
+router.delete('/:id', (req, res, next) => {
+    Projects.remove(req.params.id)
+    .then(project => {
+        res.status(200).json(project)
+    })
+    .catch(next)
+})
+
+router.get('/:id/actions', (req, res, next) => {
+    Projects.getProjectActions(req.params.id)
+    .then(actions => {
+        res.status(200).json(actions)
+    })
+    .catch (next)
+})
+
 module.exports = router;
